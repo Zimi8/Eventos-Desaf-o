@@ -1,5 +1,5 @@
 const carrito = JSON.parse(localStorage.getItem("carrito")) ?? [];
-const total = carrito.reduce((acumulador, producto)=> acumulador + producto.price, 0);
+const total = carrito.reduce((acumulador, producto)=> acumulador + producto.price, 0) ;
 document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
   
 
@@ -13,6 +13,7 @@ const producto = [
         img: "http://1.bp.blogspot.com/-EAOYwjl8Zp4/U0WWhNYaQ4I/AAAAAAAACeA/sH4mffUzAlQ/s1600/fellini.png",
         price: 220.022,
         category: "living"
+        //item:"ORO"
     },
     
     {    id:456,
@@ -30,6 +31,9 @@ const producto = [
     },
     
 ];
+//NOTA, SI MODIFICO LOS ARRAIS DE PRODUCTO, SE ROMPE EL DOM DE ABAJO. NÓTESE.
+
+
 
 producto.forEach((producto) => {
     const idButton = `add-cart${producto.id}`
@@ -43,6 +47,10 @@ producto.forEach((producto) => {
 </div>`;
   })  //PORQUE SE ME ROMPE EL DOM MALDITA SEA
 
+
+
+
+
   //otro for.each 
 
 
@@ -54,10 +62,93 @@ producto.forEach((producto) => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
     const total = carrito.reduce((acumulador, producto) => acumulador + producto.price, 0);
     document.getElementById("cart-total").innerHTML = `${carrito.length} - $${total}`;
-    
+    Swal.fire({
+      title: 'Agregaste al carrito',
+      text: 'Seguí comprando!',
+      icon: 'success',
+      confirmButtonText: ' Seguir comprando'
+  })
   })
 });
 
+document.getElementById(idButton).addEventListener('click',() => {
+
+  Swal.fire({
+      title: 'Error!',
+      text: 'Error inesperado',
+      icon: 'error',
+      confirmButtonText: ' =( '
+  })
+})
+
+
+
+
+
+/*
+Swal.fire({
+  title: 'Agregado!',
+  text: '¿Seguir Mirando?',
+  icon: 'success',
+  confirmButtonText: 'Cool'
+}) */
+
+
+
+/*
+const utensilio = [
+    {  nombresuli:"Set Ruso"  
+       id:754, 
+       item:"ORO"
+       origen:"black"
+        //item:"ORO"
+    },
+    
+    {    nombresuli:"Set Uganda"
+         id:457,
+         item:"PLATA"
+         origen:"white"
+    }
+];
+
+document.getElementById("seccion-utensilio").innerHTML += ` <div class="card">
+    <div class="precio">
+    <h1>$${utensilio.nombresuli}</h1>
+    </div>
+    <p> "${utensilio.id}">
+    <h4>${utensilio.origen}</h4>
+    <a class="boton" id="${idButton}" data-id="${utensilio.id}">Añadir Al Carrito</a>
+</div>`;
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*Toastify({
+  text: "This is a toast",
+  duration: 3000,
+  destination: "https://github.com/apvarun/toastify-js",
+  newWindow: true,
+  close: true,
+  gravity: "top", // `top` or `bottom`
+  position: "left", // `left`, `center` or `right`
+  stopOnFocus: true, // Prevents dismissing of toast on hover
+  style: {
+    background: "linear-gradient(to right, #00b09b, #96c93d)",
+  },
+  onClick: function(){} // Callback after click
+}).showToast();
+
+*/
 
 
 /*     version1 
