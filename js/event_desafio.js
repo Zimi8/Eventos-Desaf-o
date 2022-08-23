@@ -1,4 +1,4 @@
-/* const carrito = [];
+/*
 
 const productos = [
     {id:123, title:"Set Coreano", price: 220022},

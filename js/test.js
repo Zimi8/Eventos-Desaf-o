@@ -71,19 +71,31 @@ producto.forEach((producto) => {
   })
 });
 
-document.getElementById(idButton).addEventListener('click',() => {
 
-  Swal.fire({
-      title: 'Error!',
-      text: 'Error inesperado',
-      icon: 'error',
-      confirmButtonText: ' =( '
+ //  A PARTIR DE ACÁ, CREAR LAS CARD DESDE FETCH. ¿COMO AGREGAR IMG EN JSON?
+
+const buscarProductoSimilarMercaLibre = () => {
+  fetch( 'https://api.mercadolibre.com/sites/MLA/search?q=sillas' )
+  .then((response)=> response.json())
+  .then(informacion => {
+    let acumulador = ``;
+    informacion.results.forEach((producto) => {
+      console.log(producto)
+      acumulador += `<div class="card">
+      <img src="${producto.thumbnail}" width = "100px" height="100px" alt="Imagenes de productos varios"> 
+      <h4>${producto.title}</h4>
+      <h4>$${producto.price}</h4>
+      </div>  `
+    })
+    document.getElementById('seccion-cards-merca-libre').innerHTML = acumulador;
   })
-})
+}
+
+buscarProductoSimilarMercaLibre ();
 
 
-
-
+ /*'https://api.mercadolibre.com/categories/MLA1574'*/
+//https://api.mercadolibre.com/sites/MLA/search?q=sillas
 
 /*
 Swal.fire({
@@ -93,7 +105,17 @@ Swal.fire({
   confirmButtonText: 'Cool'
 }) */
 
+/*
+document.getElementById(idButton).addEventListener('click',() => {
 
+  Swal.fire({
+      title: 'Error!',
+      text: 'Error inesperado',
+      icon: 'error',
+      confirmButtonText: ' =( '
+  })
+})
+*/
 
 /*
 const utensilio = [
